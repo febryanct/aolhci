@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good OLd' Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ATAS -->
+  <header>
+    <div class="header-inner">
+      <div class="logo" onclick="showPage('home')">
+        <img src="logo.png" alt="Good OLd' Bakery Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-main">Good OLd' Bakery</span>
+          <span class="logo-sub">BEST BREAD IN TOWN</span>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+      <nav id="main-nav">
+        <a href="#" class="nav-link active" onclick="showPage('home')">Home</a>
+        <a href="#" class="nav-link" onclick="showPage('menu')">Menu</a>
+        <a href="#" class="nav-link" onclick="showPage('community')">Community</a>
+        <a href="#" class="nav-link" onclick="showPage('location')">Location</a>
+        <a href="#" class="nav-link" onclick="showPage('about')">About Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME PAGE -->
+  <main id="page-home" class="page active">
+
+    <section class="section promo-section">
+      <h2 class="section-title">Special Promo</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="moveCarousel(-1)">&#10094;</button>
+        <div class="carousel-track" id="carousel-track">
+          <div class="promo-card">
+            <div class="promo-img placeholder-img"></div>
+            <div class="promo-info">
+              <h3>Buy 2 Get 1 Free</h3>
+              <p>All Croissants every weekend!</p>
+            </div>
+          </div>
+          <div class="promo-card">
+            <div class="promo-img placeholder-img"></div>
+            <div class="promo-info">
+              <h3>10% Off Members</h3>
+              <p>Join our community and save more.</p>
+            </div>
+          </div>
+          <div class="promo-card">
+            <div class="promo-img placeholder-img"></div>
+            <div class="promo-info">
+              <h3>Free Bread Friday</h3>
+              <p>Get a free sourdough slice every Friday.</p>
+            </div>
+          </div>
+          <div class="promo-card">
+            <div class="promo-img placeholder-img"></div>
+            <div class="promo-info">
+              <h3>Birthday Special</h3>
+              <p>Free cake slice on your birthday month.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-btn right" onclick="moveCarousel(1)">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="section discount-section">
+      <div class="section-icon">🥐</div>
+      <h2 class="section-title">Discount</h2>
+      <div class="product-grid" id="discount-grid"></div>
+    </section>
+
+    <section class="section recommendation-section">
+      <h2 class="section-title">Recommendation</h2>
+      <div class="product-grid" id="recommendation-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- MENU PAGE -->
+  <main id="page-menu" class="page">
+    <section class="section">
+      <div class="category-bar">
+        <strong>Category</strong>
+        <div class="category-links" id="category-links"></div>
+      </div>
+      <div class="product-grid" id="menu-grid"></div>
+    </section>
+  </main>
+
+  <!-- COMMUNITY PAGE -->
+  <main id="page-community" class="page">
+    <section class="section community-section">
+      <h2 class="community-heading">Lets Join Our Community!</h2>
+      <div class="community-wrapper">
+        <div class="register-form-box">
+          <div class="form-logo">
+            <img src="photo/logo.png" alt="Good OLd' Bakery Logo" class="logo-img2" />
+            <span>Good OLd' Community</span>
+          </div>
+          <div id="form-success" class="form-success hidden">
+            <p>🎉 Welcome to the community! Your 10% voucher is on its way.</p>
+          </div>
+          <form id="register-form" novalidate>
+            <div class="form-group">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" placeholder="Your Name" />
+              <span class="error-msg" id="err-name"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="youremail@gmail.com" />
+              <span class="error-msg" id="err-email"></span>
+            </div>
+            <div class="form-group password-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Minimum 8 characters" />
+              <button type="button" class="toggle-pw" onclick="togglePassword()">&#128065;</button>
+              <span class="error-msg" id="err-password"></span>
+            </div>
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" />
+                <span class="error-msg" id="err-dob"></span>
+              </div>
+              <div class="form-group half">
+                <label for="gender">Gender</label>
+                <select id="gender">
+                  <option value="">Select Option</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <span class="error-msg" id="err-gender"></span>
+              </div>
+            </div>
+            <button type="submit" class="btn-join">Join the Community</button>
+            <p class="form-note">By joining, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+          </form>
+        </div>
+        <div class="community-perks">
+          <h3>Rise &amp; Shine with Our Community!</h3>
+          <ul>
+            <li><strong>A Warm Welcome:</strong> Get a 10% discount voucher on your first order just for signing up.</li>
+            <li><strong>Bake-In the Perks:</strong> Enjoy early-bird access to our new menu items and limited-edition pastries.</li>
+            <li><strong>Sweet Birthday Treats:</strong> Let us celebrate your special day with a complimentary slice of cake or pastry.</li>
+            <li><strong>Community Events:</strong> Get exclusive invitations to our baking workshops and tasting events.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LOCATION PAGE -->
+  <main id="page-location" class="page">
+    <section class="section">
+      <h2 class="section-title">Our Store</h2>
+      <div class="store-grid">
+        <div class="store-card">
+          <h3>Jakarta</h3>
+          <div class="store-body">
+            <div class="store-info">
+              <p>Jl. Jakarta Selatan No. 12</p>
+              <p>Working Hours: 9 AM – 8 PM</p>
+              <p>Phone: 0812-3456-789</p>
+              <p>Email: goodoldbakery@gmail.com</p>
+            </div>
+            <div class="store-img placeholder-img small"></div>
+          </div>
+          <div class="store-icons">
+            <span>📱</span><span>📍</span>
+          </div>
+        </div>
+        <div class="store-card">
+          <h3>Batam</h3>
+          <div class="store-body">
+            <div class="store-info">
+              <p>Jl. Batam Kota No. 5</p>
+              <p>Working Hours: 9 AM – 6 PM</p>
+              <p>Phone: 0812-3456-789</p>
+              <p>Email: goodoldbakery@gmail.com</p>
+            </div>
+            <div class="store-img placeholder-img small"></div>
+          </div>
+          <div class="store-icons">
+            <span>📱</span><span>📍</span>
+          </div>
+        </div>
+        <div class="store-card">
+          <h3>Tangerang</h3>
+          <div class="store-body">
+            <div class="store-info">
+              <p>Jl. Tangerang Raya No. 8</p>
+              <p>Working Hours: 9 AM – 6 PM</p>
+              <p>Phone: 0812-3456-789</p>
+              <p>Email: goodoldbakery@gmail.com</p>
+            </div>
+            <div class="store-img placeholder-img small"></div>
+          </div>
+          <div class="store-icons">
+            <span>📱</span><span>📍</span>
+          </div>
+        </div>
+      </div>
+      <p class="more-soon">more soon...</p>
+      <div class="location-forms">
+        <div class="loc-form-group">
+          <label>Request your city <span class="req">*</span></label>
+          <div class="loc-inline">
+            <input type="text" id="city-request" placeholder="Write your city name..." />
+            <button onclick="submitCity()">Submit</button>
+          </div>
+          <span class="error-msg" id="err-city"></span>
+          <span class="success-msg" id="ok-city"></span>
+        </div>
+        <div class="loc-form-group">
+          <label>Anything you want to report? <span class="req">*</span></label>
+          <textarea id="report-text" placeholder="Is there a problem?"></textarea>
+          <span class="error-msg" id="err-report"></span>
+          <button onclick="submitReport()">Submit</button>
+          <span class="success-msg" id="ok-report"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ABOUT US PAGE -->
+  <main id="page-about" class="page">
+    <section class="section about-section">
+      <h2 class="about-heading">BEST BREAD IN TOWN</h2>
+      <p>Good OLd' Bakery stands as the home of authentic, warm flavors that have accompanied families from generation to generation. Starting from a modest little kitchen, we have steadily grown to bring the joy of classic pastries and bread to various corners of the city. We believe that every piece of bread we bake is more than just food — it is a medium to weave back sweet memories of the past through the distinct aroma of butter and a perfectly soft texture.</p>
+      <p>Every product at Good OLd' Bakery is freshly baked daily using time-honored recipes whose authenticity is strictly preserved. Combined with modern ingredient quality standards, we ensure that all our products not only prioritize a delicious, nostalgic taste but are also healthy, nutritious, and accessible for everyone to enjoy.</p>
+
+      <h2 class="about-heading">OUR VISION &amp; MISSION</h2>
+      <p>At Good OLd' Bakery, our vision is to be the premier legendary bakery of choice for families, consistently reviving the warmth of classic flavors and setting the standard for authentic baking across generations.</p>
+      <p>To bring this vision to life, we are fully committed to our missions:</p>
+      <ul class="about-list">
+        <li><strong>Preserving Taste Heritage:</strong> Consistently utilizing high-quality ingredients and maintaining time-honored, authentic recipes to safeguard the classic flavors that our customers always miss.</li>
+        <li><strong>Expanding Accessibility:</strong> Continuously growing and opening new branches so that the comforting warmth of our freshly baked goods can be easily accessed by customers nationwide.</li>
+        <li><strong>Innovating with Identity:</strong> Thoughtfully developing new product variations that adapt to modern tastes without ever compromising the traditional characteristics and quality that define our roots.</li>
+        <li><strong>Heartfelt Service:</strong> Elevating our team's competency and customer care to provide a warm, welcoming, and thoroughly satisfying shopping experience for everyone.</li>
+      </ul>
+
+      <h2 class="about-heading">Meet the Team</h2>
+      <div class="owner-grid">
+        <div class="owner-card">
+          <div class="owner-img placeholder-img round"></div>
+          <h4>Nama 1</h4>
+          <p>Founder &amp; Head Baker</p>
+        </div>
+        <div class="owner-card">
+          <div class="owner-img placeholder-img round"></div>
+          <h4>Nama 2</h4>
+          <p>Co-Founder &amp; Operations</p>
+        </div>
+        <div class="owner-card">
+          <div class="owner-img placeholder-img round"></div>
+          <h4>Nama 3</h4>
+          <p>Head of Marketing</p>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h3>Contact Us</h3>
+        <div class="contact-icons">
+          <span>📞</span><span>💬</span><span>✉️</span><span>📸</span><span>🎵</span><span>👤</span>
+        </div>
+      </div>
+      <blockquote>"The best bread doesn't just rely on the exact measurements of a recipe, but on how much heart and sincerity we pour into every single dough."</blockquote>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="photo/logo.png" alt="Good OLd' Bakery Logo" class="logo-img2" />
+        <span>Good OLd' Bakery</span>
+      </div>
+      <p>&copy; 2026 Good OLd' Bakery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
