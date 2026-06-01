@@ -13,7 +13,7 @@
   <header>
     <div class="header-inner">
       <div class="logo" onclick="showPage('home')">
-        <img src="logo.png" alt="Good OLd' Bakery Logo" class="logo-img" />
+        <img src="photo/logo.png" alt="Good OLd' Bakery Logo" class="logo-img" />
         <div class="logo-text">
           <span class="logo-main">Good OLd' Bakery</span>
           <span class="logo-sub">BEST BREAD IN TOWN</span>
@@ -35,44 +35,34 @@
 
     <section class="section promo-section">
       <h2 class="section-title">Special Promo</h2>
-      <div class="carousel-wrapper">
-        <button class="carousel-btn left" onclick="moveCarousel(-1)">&#10094;</button>
-        <div class="carousel-track" id="carousel-track">
-          <div class="promo-card">
-            <div class="promo-img placeholder-img"></div>
-            <div class="promo-info">
-              <h3>Buy 2 Get 1 Free</h3>
-              <p>All Croissants every weekend!</p>
-            </div>
-          </div>
-          <div class="promo-card">
-            <div class="promo-img placeholder-img"></div>
-            <div class="promo-info">
-              <h3>10% Off Members</h3>
-              <p>Join our community and save more.</p>
-            </div>
-          </div>
-          <div class="promo-card">
-            <div class="promo-img placeholder-img"></div>
-            <div class="promo-info">
-              <h3>Free Bread Friday</h3>
-              <p>Get a free sourdough slice every Friday.</p>
-            </div>
-          </div>
-          <div class="promo-card">
-            <div class="promo-img placeholder-img"></div>
-            <div class="promo-info">
-              <h3>Birthday Special</h3>
-              <p>Free cake slice on your birthday month.</p>
-            </div>
+      <div class="promo-spotlight" id="promo-spotlight">
+        <button class="promo-nav left" onclick="moveCarousel(-1)">&#10094;</button>
+
+        <div class="promo-side" id="promo-prev">
+          <div class="promo-img placeholder-img"></div>
+          <div class="promo-info"><h3></h3><p></p></div>
+        </div>
+
+        <div class="promo-main" id="promo-main">
+          <div class="promo-img placeholder-img"></div>
+          <div class="promo-info">
+            <span class="promo-tag">Limited Time</span>
+            <h3></h3>
+            <p></p>
           </div>
         </div>
-        <button class="carousel-btn right" onclick="moveCarousel(1)">&#10095;</button>
+
+        <div class="promo-side" id="promo-next">
+          <div class="promo-img placeholder-img"></div>
+          <div class="promo-info"><h3></h3><p></p></div>
+        </div>
+
+        <button class="promo-nav right" onclick="moveCarousel(1)">&#10095;</button>
       </div>
+      <div class="promo-dots" id="promo-dots"></div>
     </section>
 
     <section class="section discount-section">
-      <div class="section-icon">🥐</div>
       <h2 class="section-title">Discount</h2>
       <div class="product-grid" id="discount-grid"></div>
     </section>
@@ -87,11 +77,15 @@
   <!-- MENU PAGE -->
   <main id="page-menu" class="page">
     <section class="section">
-      <div class="category-bar">
-        <strong>Category</strong>
-        <div class="category-links" id="category-links"></div>
+      <div class="menu-layout">
+        <aside class="category-sidebar" id="category-sidebar">
+          <p class="cat-sidebar-title">Category</p>
+          <div class="category-links" id="category-links"></div>
+        </aside>
+        <div class="menu-content">
+          <div class="product-grid" id="menu-grid"></div>
+        </div>
       </div>
-      <div class="product-grid" id="menu-grid"></div>
     </section>
   </main>
 
@@ -148,12 +142,36 @@
         </div>
         <div class="community-perks">
           <h3>Rise &amp; Shine with Our Community!</h3>
-          <ul>
-            <li><strong>A Warm Welcome:</strong> Get a 10% discount voucher on your first order just for signing up.</li>
-            <li><strong>Bake-In the Perks:</strong> Enjoy early-bird access to our new menu items and limited-edition pastries.</li>
-            <li><strong>Sweet Birthday Treats:</strong> Let us celebrate your special day with a complimentary slice of cake or pastry.</li>
-            <li><strong>Community Events:</strong> Get exclusive invitations to our baking workshops and tasting events.</li>
-          </ul>
+          <div class="perks-list">
+            <div class="perk-item">
+              <div class="perk-icon">🎁</div>
+              <div class="perk-text">
+                <strong>A Warm Welcome</strong>
+                <p>Get a 10% discount voucher on your first order just for signing up.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <div class="perk-icon">🥐</div>
+              <div class="perk-text">
+                <strong>Bake-In the Perks</strong>
+                <p>Early-bird access to new menu items and limited-edition pastries.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <div class="perk-icon">🎂</div>
+              <div class="perk-text">
+                <strong>Sweet Birthday Treats</strong>
+                <p>A complimentary slice of cake or pastry on your special day.</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <div class="perk-icon">👥</div>
+              <div class="perk-text">
+                <strong>Community Events</strong>
+                <p>Exclusive invites to baking workshops and tasting events.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -235,19 +253,22 @@
   <!-- ABOUT US PAGE -->
   <main id="page-about" class="page">
     <section class="section about-section">
-      <h2 class="about-heading">BEST BREAD IN TOWN</h2>
-      <p>Good OLd' Bakery stands as the home of authentic, warm flavors that have accompanied families from generation to generation. Starting from a modest little kitchen, we have steadily grown to bring the joy of classic pastries and bread to various corners of the city. We believe that every piece of bread we bake is more than just food — it is a medium to weave back sweet memories of the past through the distinct aroma of butter and a perfectly soft texture.</p>
-      <p>Every product at Good OLd' Bakery is freshly baked daily using time-honored recipes whose authenticity is strictly preserved. Combined with modern ingredient quality standards, we ensure that all our products not only prioritize a delicious, nostalgic taste but are also healthy, nutritious, and accessible for everyone to enjoy.</p>
+      <div class="about-story-panel">
+        <h2 class="about-heading">BEST BREAD IN TOWN</h2>
+        <p>Good OLd' Bakery stands as the home of authentic, warm flavors that have accompanied families from generation to generation. Starting from a modest little kitchen, we have steadily grown to bring the joy of classic pastries and bread to various corners of the city. We believe that every piece of bread we bake is more than just food — it is a medium to weave back sweet memories of the past through the distinct aroma of butter and a perfectly soft texture.</p>
+        <p>Every product at Good OLd' Bakery is freshly baked daily using time-honored recipes whose authenticity is strictly preserved. Combined with modern ingredient quality standards, we ensure that all our products not only prioritize a delicious, nostalgic taste but are also healthy, nutritious, and accessible for everyone to enjoy.</p>
+      </div>
 
-      <h2 class="about-heading">OUR VISION &amp; MISSION</h2>
-      <p>At Good OLd' Bakery, our vision is to be the premier legendary bakery of choice for families, consistently reviving the warmth of classic flavors and setting the standard for authentic baking across generations.</p>
-      <p>To bring this vision to life, we are fully committed to our missions:</p>
-      <ul class="about-list">
-        <li><strong>Preserving Taste Heritage:</strong> Consistently utilizing high-quality ingredients and maintaining time-honored, authentic recipes to safeguard the classic flavors that our customers always miss.</li>
-        <li><strong>Expanding Accessibility:</strong> Continuously growing and opening new branches so that the comforting warmth of our freshly baked goods can be easily accessed by customers nationwide.</li>
-        <li><strong>Innovating with Identity:</strong> Thoughtfully developing new product variations that adapt to modern tastes without ever compromising the traditional characteristics and quality that define our roots.</li>
-        <li><strong>Heartfelt Service:</strong> Elevating our team's competency and customer care to provide a warm, welcoming, and thoroughly satisfying shopping experience for everyone.</li>
-      </ul>
+      <div class="about-vismis-panel">
+        <h2 class="about-heading">OUR VISION &amp; MISSION</h2>
+        <p>Our vision is to be the premier legendary bakery of choice for families, consistently reviving the warmth of classic flavors and setting the standard for authentic baking across generations. To bring this vision to life, we are committed to:</p>
+        <ul class="about-list">
+          <li><strong>Preserving Taste Heritage:</strong> Consistently utilizing high-quality ingredients and maintaining time-honored, authentic recipes to safeguard the classic flavors that our customers always miss.</li>
+          <li><strong>Expanding Accessibility:</strong> Continuously growing and opening new branches so that the comforting warmth of our freshly baked goods can be easily accessed by customers nationwide.</li>
+          <li><strong>Innovating with Identity:</strong> Thoughtfully developing new product variations that adapt to modern tastes without ever compromising the traditional characteristics and quality that define our roots.</li>
+          <li><strong>Heartfelt Service:</strong> Elevating our team's competency and customer care to provide a warm, welcoming, and thoroughly satisfying shopping experience for everyone.</li>
+        </ul>
+      </div>
 
       <h2 class="about-heading">Meet the Team</h2>
       <div class="owner-grid">
