@@ -58,6 +58,12 @@ function buildProductCard(product, showBadge) {
     badgeHTML = '<span class="badge">⭐ Top Pick</span>';
   }
 
+  let ribbonHTML = '';
+  if (product.oldPrice) {
+    const pct = Math.round((1 - product.price / product.oldPrice) * 100);
+    ribbonHTML = `<span class="discount-ribbon">−${pct}%</span>`;
+  }
+
   let priceHTML = '';
   if (product.oldPrice) {
     priceHTML = `<span class="prod-old-price">Rp ${product.oldPrice.toLocaleString('id-ID')}</span>
@@ -68,10 +74,13 @@ function buildProductCard(product, showBadge) {
 
   card.innerHTML = `
     <div class="prod-img"></div>
+    ${ribbonHTML}
     ${badgeHTML}
-    <div class="prod-name">${product.name}</div>
-    ${priceHTML}
-    <div class="prod-desc">${product.desc}</div>
+    <div class="card-body">
+      <div class="prod-name">${product.name}</div>
+      ${priceHTML}
+      <div class="prod-desc">${product.desc}</div>
+    </div>
   `;
   return card;
 }
@@ -115,17 +124,51 @@ function renderMenuGrid() {
   filtered.forEach(p => grid.appendChild(buildProductCard(p, false)));
 }
 
+const promos = [
+  { title: 'Buy 2 Get 1 Free', desc: 'All Croissants every weekend!' },
+  { title: '10% Off Members', desc: 'Join our community and save more.' },
+  { title: 'Free Bread Friday', desc: 'Get a free sourdough slice every Friday.' },
+  { title: 'Birthday Special', desc: 'Free cake slice on your birthday month.' },
+];
+
 let carouselIndex = 0;
 
-function moveCarousel(dir) {
-  const track = document.getElementById('carousel-track');
-  const cards = track.querySelectorAll('.promo-card');
-  const visibleCount = window.innerWidth <= 768 ? 1 : 3;
-  const maxIndex = cards.length - visibleCount;
+function renderSpotlight() {
+  const total = promos.length;
+  const prev = (carouselIndex - 1 + total) % total;
+  const next = (carouselIndex + 1) % total;
 
-  carouselIndex = Math.max(0, Math.min(carouselIndex + dir, maxIndex));
-  const cardWidth = cards[0].offsetWidth + 16; // gap = 16
-  track.style.transform = `translateX(-${carouselIndex * cardWidth}px)`;
+  const setCard = (elId, data) => {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.querySelector('h3').textContent = data.title;
+    el.querySelector('p').textContent = data.desc;
+  };
+
+  setCard('promo-prev', promos[prev]);
+  setCard('promo-main', promos[carouselIndex]);
+  setCard('promo-next', promos[next]);
+
+  document.querySelectorAll('.promo-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === carouselIndex);
+  });
+}
+
+function buildDots() {
+  const container = document.getElementById('promo-dots');
+  if (!container) return;
+  container.innerHTML = '';
+  promos.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'promo-dot' + (i === 0 ? ' active' : '');
+    btn.onclick = () => { carouselIndex = i; renderSpotlight(); };
+    container.appendChild(btn);
+  });
+}
+
+function moveCarousel(dir) {
+  carouselIndex = (carouselIndex + dir + promos.length) % promos.length;
+  renderSpotlight();
 }
 
 
@@ -211,6 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHomeGrids();
   renderCategories();
   renderMenuGrid();
+  buildDots();
+  renderSpotlight();
 });
 
 
